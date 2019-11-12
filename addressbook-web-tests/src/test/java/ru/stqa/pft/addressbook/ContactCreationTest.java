@@ -30,7 +30,7 @@ public class ContactCreationTest {
         driver.findElement(By.name("user")).sendKeys(username);
         driver.findElement(By.name("pass")).clear();
         driver.findElement(By.name("pass")).sendKeys(password);
-        driver.findElement(By.xpath("//*[@id=\"LoginForm\"]/input[3]")).click();
+        driver.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ContactCreationTest {
     }
 
     private void submitNewContact() {
-        driver.findElement(By.xpath("//*[@id=\"content\"]/form/input[21]")).click();
+        driver.findElement(By.name("submit")).click();
     }
 
     private void fillContactForm(ContactData contactData) {
