@@ -32,7 +32,7 @@ public class GroupCreationTest {
         driver.findElement(By.name("user")).sendKeys(username);
         driver.findElement(By.name("pass")).clear();
         driver.findElement(By.name("pass")).sendKeys(password);
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
+        driver.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     @Test
