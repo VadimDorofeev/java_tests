@@ -8,38 +8,40 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.*;
+
 import static org.testng.Assert.*;
+
 import org.openqa.selenium.*;
 
 public class ContactCreationTest {
-        private WebDriver driver;
-        private StringBuffer verificationErrors = new StringBuffer();
+    private WebDriver driver;
+    private StringBuffer verificationErrors = new StringBuffer();
 
-        @BeforeClass(alwaysRun = true)
-        public void setUp() throws Exception {
-            driver = new FirefoxDriver();
-            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            login("admin", "secret");
-        }
+    @BeforeClass(alwaysRun = true)
+    public void setUp() throws Exception {
+        driver = new FirefoxDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        login("admin", "secret");
+    }
 
-        private void login(String username, String password) {
-            driver.get("http://localhost/addressbook/edit.php");
-            driver.findElement(By.name("user")).clear();
-            driver.findElement(By.name("user")).sendKeys(username);
-            driver.findElement(By.name("pass")).clear();
-            driver.findElement(By.name("pass")).sendKeys(password);
-            driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
-        }
+    private void login(String username, String password) {
+        driver.get("http://localhost/addressbook/edit.php");
+        driver.findElement(By.name("user")).clear();
+        driver.findElement(By.name("user")).sendKeys(username);
+        driver.findElement(By.name("pass")).clear();
+        driver.findElement(By.name("pass")).sendKeys(password);
+        driver.findElement(By.xpath("//*[@id=\"LoginForm\"]/input[3]")).click();
+    }
 
-        @Test
-        public void testContactCreation() throws Exception {
-            initCreationNewContact();
-            fillContactForm(new ContactData("Ivan", "Ivanov", "Pushkin st, 54", "ivan.ivanov@mail.ru", "+78521457474"));
-            submitNewContact();
-        }
+    @Test
+    public void testContactCreation() throws Exception {
+        initCreationNewContact();
+        fillContactForm(new ContactData("Ivan", "Ivanov", "Pushkin st, 54", "ivan.ivanov@mail.ru", "+78521457474"));
+        submitNewContact();
+    }
 
     private void submitNewContact() {
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
+        driver.findElement(By.xpath("//*[@id=\"content\"]/form/input[21]")).click();
     }
 
     private void fillContactForm(ContactData contactData) {
@@ -65,12 +67,12 @@ public class ContactCreationTest {
     }
 
     @AfterClass(alwaysRun = true)
-        public void tearDown() throws Exception {
-            driver.quit();
-            String verificationErrorString = verificationErrors.toString();
-            if (!"".equals(verificationErrorString)) {
-                fail(verificationErrorString);
-            }
+    public void tearDown() throws Exception {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) {
+            fail(verificationErrorString);
         }
     }
+}
 
