@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class ApplicationManager {
+public class ApplicationManager extends GroupHelper{
     private WebDriver driver;
     private StringBuffer verificationErrors = new StringBuffer();
 
@@ -54,6 +54,10 @@ public class ApplicationManager {
         driver.findElement(By.linkText("groups")).click();
     }
 
+    public void returnToGroupTab() {
+        driver.findElement(By.linkText("group page"));
+    }
+
     public void stop() {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
@@ -94,5 +98,9 @@ public class ApplicationManager {
 
     public void initCreationNewContact() {
         driver.findElement(By.linkText("add new")).click();
+    }
+
+    public void returnToHomePage() {
+        driver.findElement(By.linkText("home page"));
     }
 }
