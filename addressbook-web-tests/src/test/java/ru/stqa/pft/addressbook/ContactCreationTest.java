@@ -1,17 +1,15 @@
 package ru.stqa.pft.addressbook;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import org.testng.annotations.*;
-
-import static org.testng.Assert.*;
-
-import org.openqa.selenium.*;
+import static org.testng.Assert.fail;
 
 public class ContactCreationTest {
     private WebDriver driver;
