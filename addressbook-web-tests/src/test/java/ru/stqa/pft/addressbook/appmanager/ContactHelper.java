@@ -29,4 +29,28 @@ public class ContactHelper extends HelperBase {
     public void submitNewContact() {
         click(By.name("submit"));
     }
+
+    public void goToHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public void initModificationContact() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitModificationContact() {
+        click(By.name("update"));
+    }
+
+    public void selectContact() {
+        click(By.xpath("//input[@type='checkbox']"));
+    }
+
+    public void deleteSelectedContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void submitDeletion() {
+        driver.switchTo().alert().accept();
+    }
 }
