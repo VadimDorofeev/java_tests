@@ -62,4 +62,15 @@ public class ContactHelper extends HelperBase {
     public void submitDeletion() {
         driver.switchTo().alert().accept();
     }
+
+    public void createContact(ContactData contactData, boolean b) {
+        initCreationNewContact();
+        fillContactForm(contactData, true);
+        submitNewContact();
+        returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("//img[@alt='Edit']"));
+    }
 }
