@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTest extends TestBase {
@@ -24,6 +23,7 @@ public class GroupModificationTest extends TestBase {
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupTab();
         List<GroupData> after = app.getGroupHelper().getGroupList();
+
         Assert.assertTrue(after.size() == before.size());
 
         before.remove(before.size() - 1);

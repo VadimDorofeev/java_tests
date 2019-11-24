@@ -46,8 +46,9 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void initModificationContact() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initModificationContact(int index) {
+        driver.findElements(By.xpath("//a[@href='edit.php']/a")).get(index).click();
+        //click(By.xpath("//img[@alt='Edit']"));
     }
 
     public void submitModificationContact() {
@@ -81,4 +82,17 @@ public class ContactHelper extends HelperBase {
         return driver.findElements(By.name("selected[]")).size();
     }
 
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']"));
+        for (WebElement element : elements) {
+            String firstName = element.findElement(By.tagName("td")).getAttribute("td");
+            //String lastName = element.findElement()
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            ContactData contact = new ContactData(id, firstName, null, null, null, null,
+                    null);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
 }

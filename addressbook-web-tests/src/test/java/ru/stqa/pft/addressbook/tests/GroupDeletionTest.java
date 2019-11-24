@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -20,6 +19,7 @@ public class GroupDeletionTest extends TestBase {
         app.getGroupHelper().deleteSelectedGroups();
         app.getGroupHelper().returnToGroupTab();
         List<GroupData> after = app.getGroupHelper().getGroupList();
+
         Assert.assertTrue(after.size() == before.size() - 1);
 
         before.remove(before.size() - 1);
