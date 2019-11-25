@@ -24,9 +24,14 @@ public class ContactCreationTest extends TestBase {
         Assert.assertTrue(after.size() == before.size() + 1);
 
         for (int i = 0; i < before.size(); i++) {
+            System.out.println(before.get(i));
+        }
+        System.out.println("==========================================");
+        for (int i = 0; i < after.size(); i++) {
             System.out.println(after.get(i));
         }
 
+        contact.setId(after.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get().getId());
         before.add(contact);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);

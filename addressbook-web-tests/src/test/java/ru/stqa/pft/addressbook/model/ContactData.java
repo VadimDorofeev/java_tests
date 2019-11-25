@@ -86,4 +86,8 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName);
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

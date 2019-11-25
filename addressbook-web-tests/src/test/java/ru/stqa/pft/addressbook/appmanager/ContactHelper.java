@@ -47,7 +47,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initModificationContact(int index) {
-        driver.findElement(By.xpath("//a[@href='edit.php?id=" + index + "']/a")).click();
+        driver.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitModificationContact() {
@@ -85,10 +85,14 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
-            String firstName = element.findElement(By.tagName("td")).getAttribute("td");
-            //String lastName = element.findElement()
+            List<WebElement> lines = element.findElements(By.tagName("td"));
+            String firstName = lines.get(2).getText();
+            String lastName = lines.get(1).getText();
+            String phone = lines.get(5).getText();
+            String email = lines.get(4).getText();
+            String address = lines.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            ContactData contact = new ContactData(id, firstName, null, null, null, null,
+            ContactData contact = new ContactData(id, firstName, lastName, address, email, phone,
                     null);
             contacts.add(contact);
         }

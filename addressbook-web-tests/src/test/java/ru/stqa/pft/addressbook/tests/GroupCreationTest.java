@@ -22,13 +22,6 @@ public class GroupCreationTest extends TestBase {
 
         Assert.assertTrue(after.size() == before.size() + 1);
 
-        for (int i = 0; i < before.size(); i++) {
-            System.out.println(before.get(i));
-        }
-        System.out.println("=====================================");
-        for (int i = 0; i < after.size(); i++) {
-            System.out.println(after.get(i));
-        }
 
         group.setId(after.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get().getId());
         before.add(group);
