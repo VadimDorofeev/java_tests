@@ -47,8 +47,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initModificationContact(int index) {
-        driver.findElements(By.xpath("//a[@href='edit.php']/a")).get(index).click();
-        //click(By.xpath("//img[@alt='Edit']"));
+        driver.findElement(By.xpath("//a[@href='edit.php?id=" + index + "']/a")).click();
     }
 
     public void submitModificationContact() {
