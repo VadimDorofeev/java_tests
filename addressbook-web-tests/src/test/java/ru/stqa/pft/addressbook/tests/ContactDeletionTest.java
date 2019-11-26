@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactDeletionTest extends TestBase {
@@ -23,5 +24,9 @@ public class ContactDeletionTest extends TestBase {
         List<ContactData> after = app.getContactHelper().getContactList();
 
         Assert.assertTrue(after.size() == before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
+
     }
 }
