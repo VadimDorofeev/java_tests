@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GroupModificationTest extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(enabled = false)
     public void ensurePreconditions() {
         app.goTo().groupPage();
         if (app.group().list().size() == 0) {
@@ -18,7 +18,7 @@ public class GroupModificationTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void testGroupModification() {
         List<GroupData> before = app.group().list();
         int index = before.size() - 1;

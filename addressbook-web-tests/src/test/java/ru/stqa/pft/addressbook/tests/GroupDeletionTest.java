@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GroupDeletionTest extends TestBase {
 
-    @BeforeMethod
+    @BeforeMethod(enabled = false)
     public void ensurePreconditions() {
         app.goTo().groupPage();
         if (app.group().list().size() == 0) {
@@ -17,7 +17,7 @@ public class GroupDeletionTest extends TestBase {
         }
     }
 
-    @Test
+    @Test(enabled = false)
     public void testUntitledTestCase() {
         List<GroupData> before = app.group().list();
         int index = before.size() - 1;
