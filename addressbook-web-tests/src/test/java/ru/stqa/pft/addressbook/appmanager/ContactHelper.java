@@ -7,8 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -42,10 +43,6 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void goToHomePage() {
-        click(By.linkText("home"));
-    }
-
     public void create(ContactData contact) {
         initCreationNewContact();
         fillContactForm(contact, true);
@@ -53,22 +50,23 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void delete(int index) {
-        selectContact(index);
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
         deleteSelectedContact();
         submitDeletion();
         returnToHomePage();
     }
 
-    public void modify(int index, ContactData contact) {
-        initModificationContact(index);
+    public void modify(ContactData contact) {
+        initModificationContactById(contact.getId());
         fillContactForm(contact, false);
         submitModificationContact();
         returnToHomePage();
     }
 
-    public void initModificationContact(int index) {
-        driver.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+
+    public void initModificationContactById(int id) {
+        driver.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
     }
 
     public void submitModificationContact() {
@@ -77,6 +75,10 @@ public class ContactHelper extends HelperBase {
 
     public void selectContact(int index) {
         driver.findElements(By.xpath("//input[@type='checkbox']")).get(index).click();
+    }
+
+    public void selectContactById(int id) {
+        driver.findElement(By.cssSelector("input[id='"+ id + "']")).click();
     }
 
     public void deleteSelectedContact() {
@@ -102,8 +104,8 @@ public class ContactHelper extends HelperBase {
         return driver.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
             List<WebElement> lines = element.findElements(By.tagName("td"));
@@ -117,4 +119,6 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+
+
 }
