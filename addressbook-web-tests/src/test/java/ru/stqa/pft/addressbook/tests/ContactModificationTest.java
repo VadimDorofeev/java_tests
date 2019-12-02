@@ -6,11 +6,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
-import static org.testng.Assert.assertTrue;
 
 public class ContactModificationTest extends TestBase {
 
@@ -18,9 +15,9 @@ public class ContactModificationTest extends TestBase {
     public void ensurePreconditions() {
         app.goTo().homePage();
         if (app.contact().all().size() == 0) {
-            app.contact().createContact(new ContactData().withFirstName("Ivan").withLastName("Ivanov").
+            app.contact().create(new ContactData().withFirstName("Ivan").withLastName("Ivanov").
                     withAddress("Pushkin st, 54").withEmail("ivan.ivanov@mail.ru").
-                    withPhone("+78521457474").withGroup("test1"), true);
+                    withPhone("+78521457474"));
         }
     }
 

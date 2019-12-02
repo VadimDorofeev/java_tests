@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.HashSet;
 import java.util.List;
@@ -44,10 +45,19 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
+    public void createContact(ContactData contactData, boolean b) {
+        initCreationNewContact();
+        fillContactForm(contactData, true);
+        submitNewContact();
+        contactCache = null;
+        returnToHomePage();
+    }
+
     public void create(ContactData contact) {
         initCreationNewContact();
         fillContactForm(contact, true);
         submitNewContact();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -55,6 +65,7 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         deleteSelectedContact();
         submitDeletion();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -62,6 +73,7 @@ public class ContactHelper extends HelperBase {
         initModificationContactById(contact.getId());
         fillContactForm(contact, false);
         submitModificationContact();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -90,13 +102,6 @@ public class ContactHelper extends HelperBase {
         driver.switchTo().alert().accept();
     }
 
-    public void createContact(ContactData contactData, boolean b) {
-        initCreationNewContact();
-        fillContactForm(contactData, true);
-        submitNewContact();
-        returnToHomePage();
-    }
-
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
@@ -116,13 +121,20 @@ public class ContactHelper extends HelperBase {
             String email = lines.get(4).getText();
             String address = lines.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address).withEmail(email).withPhone(phone));
+            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).
+                    withAddress(address).withEmail(email).withPhone(phone));
         }
         return contacts;
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts (contactCache);
+        }
+
+        contactCache = new Contacts();
         List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']"));
         for (WebElement element : elements) {
             List<WebElement> lines = element.findElements(By.tagName("td"));
@@ -132,9 +144,10 @@ public class ContactHelper extends HelperBase {
             String email = lines.get(4).getText();
             String address = lines.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address).withEmail(email).withPhone(phone));
+            contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).
+                    withAddress(address).withEmail(email).withPhone(phone));
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
 }
