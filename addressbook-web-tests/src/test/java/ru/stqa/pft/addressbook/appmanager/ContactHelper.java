@@ -18,19 +18,13 @@ public class ContactHelper extends HelperBase {
         super(driver);
     }
 
-    public void fillContactForm(ContactData contactData, boolean creation) {
+    public void fillContactForm(ContactData contactData) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
         type(By.name("email"), contactData.getEmail());
         type(By.name("mobile"), contactData.getMobilePhone());
         attach(By.name("photo"), contactData.getPhoto());
-
-        if (creation) {
-            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
     }
 
     public void initCreationNewContact() {
@@ -45,9 +39,9 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void createContact(ContactData contactData, boolean b) {
+    public void createContact(ContactData contactData) {
         initCreationNewContact();
-        fillContactForm(contactData, true);
+        fillContactForm(contactData);
         submitNewContact();
         contactCache = null;
         returnToHomePage();
@@ -55,7 +49,7 @@ public class ContactHelper extends HelperBase {
 
     public void create(ContactData contact) {
         initCreationNewContact();
-        fillContactForm(contact, true);
+        fillContactForm(contact);
         submitNewContact();
         contactCache = null;
         returnToHomePage();
@@ -71,7 +65,7 @@ public class ContactHelper extends HelperBase {
 
     public void modify(ContactData contact) {
         initModificationContactById(contact.getId());
-        fillContactForm(contact, false);
+        fillContactForm(contact);
         submitModificationContact();
         contactCache = null;
         returnToHomePage();

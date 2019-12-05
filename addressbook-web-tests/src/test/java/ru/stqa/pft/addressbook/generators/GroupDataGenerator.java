@@ -47,7 +47,7 @@ public class GroupDataGenerator {
         } else if (format.equals("json") ) {
             saveAsJson(groups, new File(file));
         } else {
-            System.out.println("Urecognized format " + format);
+            System.out.println("Unrecognized format " + format);
         }
     }
 
