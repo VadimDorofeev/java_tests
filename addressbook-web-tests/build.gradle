@@ -1,5 +1,3 @@
-import org.gradle.api.tasks.testing.Test
-
 apply plugin: 'java'
 
 
@@ -16,14 +14,14 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.6'
 }
 
-task testGroups (type:Test) {
+task testContacts (type:Test) {
     useTestNG {
-        suites 'src/tests/resources/testng-groups.xml'
+        suites 'src/test/resources/testng-contacts.xml'
     }
 }
 
-task testContacts (type: Test) {
+task testGroups (type:Test) {
     useTestNG {
-        suites 'src/tests/resources/testng-contacts.xml'
+        suites 'src/test/resources/testng-groups.xml'
     }
 }
