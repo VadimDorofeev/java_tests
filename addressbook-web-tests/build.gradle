@@ -12,7 +12,8 @@ dependencies {
     compile 'com.beust:jcommander:1.78'
     compile 'com.thoughtworks.xstream:xstream:1.4.11.1'
     compile 'com.google.code.gson:gson:2.8.6'
-    compile 'mysql:mysql-connector-java:8.0.18'
+    compile 'mysql:mysql-connector-java:5.1.48'
+    compile 'org.hibernate:hibernate-core:5.4.2.Final'
 }
 
 task testContacts (type:Test) {
