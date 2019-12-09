@@ -2,28 +2,49 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
     @Expose
+    @Column(name = "firstname")
     private String firstName;
     @Expose
+    @Column(name = "lastname")
     private String lastName;
     @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
     @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
+    @Transient
     private String allPhones;
+    @Transient
     private String group;
-    private File photo;
+    @Transient
+    private String photo;
 
     public String getFirstName() {
         return firstName;
@@ -64,7 +85,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     @Override
@@ -89,16 +110,19 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName);
+                Objects.equals(lastName, that.lastName) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(mobilePhone, that.mobilePhone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, firstName, lastName, address, email, mobilePhone);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
