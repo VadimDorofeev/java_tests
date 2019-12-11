@@ -4,8 +4,12 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.IOException;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 public class TestBase {
 
@@ -20,5 +24,11 @@ public class TestBase {
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         app.stop();
+    }
+
+    public void verifyGroupListInUI() {
+        Groups dbGroups = app.db().groups();
+        Groups uiGroups = app.group().all();
+        assertThat(uiGroups, equalTo(dbGroups));
     }
 }
