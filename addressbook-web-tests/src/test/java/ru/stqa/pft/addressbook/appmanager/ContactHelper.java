@@ -24,6 +24,17 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("email"), contactData.getEmail());
         type(By.name("mobile"), contactData.getMobilePhone());
+        new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+        //attach(By.name("photo"), contactData.getPhoto());
+    }
+
+    public void fillContactFormWithGroup(ContactData contactData) {
+        type(By.name("firstname"), contactData.getFirstName());
+        type(By.name("lastname"), contactData.getLastName());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("mobile"), contactData.getMobilePhone());
+
         //attach(By.name("photo"), contactData.getPhoto());
     }
 
@@ -39,7 +50,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void createContact(ContactData contactData) {
+    public void createWithGroup(ContactData contactData) {
         initCreationNewContact();
         fillContactForm(contactData);
         submitNewContact();
