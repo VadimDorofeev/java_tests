@@ -134,12 +134,11 @@ public class ContactHelper extends HelperBase {
             List<WebElement> lines = element.findElements(By.tagName("td"));
             String firstName = lines.get(2).getText();
             String lastName = lines.get(1).getText();
-            String allPhones = lines.get(5).getText();
             String email = lines.get(4).getText();
             String address = lines.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
             contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).
-                    withAddress(address).withEmail(email).withAllPhones(allPhones));
+                    withAddress(address).withEmail(email));
         }
         return new Contacts(contactCache);
     }
