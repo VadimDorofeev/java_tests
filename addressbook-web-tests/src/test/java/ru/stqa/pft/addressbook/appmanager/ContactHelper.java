@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("email"), contactData.getEmail());
         type(By.name("mobile"), contactData.getMobilePhone());
-        new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+        //new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
         //attach(By.name("photo"), contactData.getPhoto());
     }
 
@@ -34,7 +35,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("email"), contactData.getEmail());
         type(By.name("mobile"), contactData.getMobilePhone());
-
         //attach(By.name("photo"), contactData.getPhoto());
     }
 
@@ -96,7 +96,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById(int id) {
-        driver.findElement(By.cssSelector("input[id='" + id + "']")).click();
+        driver.findElement(By.id(""+id)).click();
+        //driver.findElement(By.cssSelector("input[id='" + id + "']")).click();
     }
 
     public void deleteSelectedContact() {
@@ -164,5 +165,15 @@ public class ContactHelper extends HelperBase {
         driver.navigate().back();
         return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).
                 withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+    }
+
+    public void addUserToGroup(GroupData groupForAdding) {
+        new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(groupForAdding.getName());
+        driver.findElement(By.name("add")).click();
+    }
+
+    public void addContactToGroup(ContactData modifiedContact, GroupData groupForAdding) {
+        selectContactById(modifiedContact.getId());
+        addUserToGroup(groupForAdding);
     }
 }
