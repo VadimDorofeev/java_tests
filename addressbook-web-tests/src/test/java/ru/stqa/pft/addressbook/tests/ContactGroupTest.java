@@ -9,6 +9,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactGroupTest extends TestBase {
 
@@ -39,32 +40,34 @@ public class ContactGroupTest extends TestBase {
 
         for (GroupData group : groups) {
             Contacts contactsInGroups = app.db().getContactsInGroup(group.getId());
-            for (ContactData contact : contactsInGroups) {
-                if (!contactsInGroups.contains(group)) {
-                    modifiedContact = contact;
-                    groupForAdding = group;
-                    before = contactsInGroups;
-                    break;
+            if (contactsInGroups.size() != 0) {
+                for (ContactData contact : contacts) {
+                    if (!contactsInGroups.contains(contact)) {
+                        groupForAdding = group;
+                        modifiedContact = contact;
+                        before = contactsInGroups;
+                        break;
+                    }
                 }
             }
         }
 
-        if (modifiedContact == null) {
-            GroupData newGroup = new GroupData().withName("new group");
+        if (groupForAdding == null) {
+            groupForAdding = new GroupData().withName("new group NULL");
             app.goTo().groupPage();
-            app.group().create(newGroup);
+            app.group().create(groupForAdding);
             modifiedContact = app.db().contacts().iterator().next();
-            groupForAdding = newGroup;
+            int id = groupForAdding.getId();
+            before = app.db().getContactsInGroup(groupForAdding.getId());
         }
 
         app.goTo().homePage();
         app.contact().addContactToGroup(modifiedContact, groupForAdding);
         Contacts after = app.db().getContactsInGroup(groupForAdding.getId());
 
-//        Assert.assertThat(after, equalTo(before));
-//        System.out.println(before.size());
-//        System.out.println(after.size());
-//        //Assert.assertThat(after, equalTo(before.withAdded(modifiedContact)));
-    }
+        System.out.println("before.size()= " + before.size() + ", after.size()=" + after.size());
 
+        Assert.assertThat(after, equalTo(before.withAdded(modifiedContact)));
+
+    }
 }
