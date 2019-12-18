@@ -167,13 +167,13 @@ public class ContactHelper extends HelperBase {
                 withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 
-    public void addUserToGroup(GroupData groupForAdding) {
-        new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(groupForAdding.getName());
+    public void addUserToGroup(String nameOfTheGroup) {
+        new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(nameOfTheGroup);
         driver.findElement(By.name("add")).click();
     }
 
     public void addContactToGroup(ContactData modifiedContact, GroupData groupForAdding) {
         selectContactById(modifiedContact.getId());
-        addUserToGroup(groupForAdding);
+        addUserToGroup(groupForAdding.getName());
     }
 }

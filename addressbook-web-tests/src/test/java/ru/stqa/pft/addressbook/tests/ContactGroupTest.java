@@ -41,6 +41,10 @@ public class ContactGroupTest extends TestBase {
         for (GroupData group : groups) {
             Contacts contactsInGroups = app.db().getContactsInGroup(group.getId());
             if (contactsInGroups.size() != 0) {
+                groupForAdding = group;
+                modifiedContact = contactsInGroups.iterator().next();
+                before = contactsInGroups;
+            } else {
                 for (ContactData contact : contacts) {
                     if (!contactsInGroups.contains(contact)) {
                         groupForAdding = group;
@@ -56,9 +60,9 @@ public class ContactGroupTest extends TestBase {
             groupForAdding = new GroupData().withName("new group NULL");
             app.goTo().groupPage();
             app.group().create(groupForAdding);
-            modifiedContact = app.db().contacts().iterator().next();
-            int id = groupForAdding.getId();
             before = app.db().getContactsInGroup(groupForAdding.getId());
+            modifiedContact = app.db().contacts().iterator().next();
+            app.contact().addContactToGroup(modifiedContact, groupForAdding);
         }
 
         app.goTo().homePage();
