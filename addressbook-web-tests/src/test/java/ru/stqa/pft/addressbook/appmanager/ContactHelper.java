@@ -175,5 +175,6 @@ public class ContactHelper extends HelperBase {
     public void addContactToGroup(ContactData modifiedContact, GroupData groupForAdding) {
         selectContactById(modifiedContact.getId());
         addUserToGroup(groupForAdding.getName());
+        contactCache = null;
     }
 }

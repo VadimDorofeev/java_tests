@@ -9,7 +9,6 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactGroupTest extends TestBase {
 
@@ -37,21 +36,16 @@ public class ContactGroupTest extends TestBase {
         ContactData modifiedContact = null;
         GroupData groupForAdding = null;
         Contacts before = null;
+        int maxId = 0;
 
         for (GroupData group : groups) {
             Contacts contactsInGroups = app.db().getContactsInGroup(group.getId());
-            if (contactsInGroups.size() != 0) {
-                groupForAdding = group;
-                modifiedContact = contactsInGroups.iterator().next();
-                before = contactsInGroups;
-            } else {
-                for (ContactData contact : contacts) {
-                    if (!contactsInGroups.contains(contact)) {
-                        groupForAdding = group;
-                        modifiedContact = contact;
-                        before = contactsInGroups;
-                        break;
-                    }
+            for (ContactData contact : contacts) {
+                if (!contactsInGroups.contains(contact)) {
+                    groupForAdding = group;
+                    modifiedContact = contact;
+                    before = contactsInGroups;
+                    break;
                 }
             }
         }
@@ -60,18 +54,16 @@ public class ContactGroupTest extends TestBase {
             groupForAdding = new GroupData().withName("new group NULL");
             app.goTo().groupPage();
             app.group().create(groupForAdding);
-            before = app.db().getContactsInGroup(groupForAdding.getId());
             modifiedContact = app.db().contacts().iterator().next();
-            app.contact().addContactToGroup(modifiedContact, groupForAdding);
+            maxId = app.group().getMaxId();
+            before = app.db().getContactsInGroup(maxId);
         }
 
         app.goTo().homePage();
         app.contact().addContactToGroup(modifiedContact, groupForAdding);
-        Contacts after = app.db().getContactsInGroup(groupForAdding.getId());
 
-        System.out.println("before.size()= " + before.size() + ", after.size()=" + after.size());
+        Contacts after = app.db().getContactsInGroup(maxId != 0 ? maxId : groupForAdding.getId());
 
         Assert.assertThat(after, equalTo(before.withAdded(modifiedContact)));
-
     }
 }
