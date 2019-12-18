@@ -10,7 +10,7 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class ContactGroupTest extends TestBase {
+public class ContactGroupTestAdd extends TestBase {
 
     @BeforeTest
     public void checkContacts() {

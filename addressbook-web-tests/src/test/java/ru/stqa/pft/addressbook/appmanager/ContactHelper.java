@@ -177,4 +177,19 @@ public class ContactHelper extends HelperBase {
         addUserToGroup(groupForAdding.getName());
         contactCache = null;
     }
+
+    public void deleteFromGroup(ContactData modifiedContact, GroupData groupForAdding) {
+        enterGroup(groupForAdding.getName());
+        selectContactById(modifiedContact.getId());
+        deleteContact();
+    }
+
+    private void deleteContact() {
+        driver.findElement(By.name("remove")).click();
+    }
+
+    private void enterGroup(String name) {
+        new Select(driver.findElement(By.name("group"))).selectByVisibleText(name);
+    }
+
 }
