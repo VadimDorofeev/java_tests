@@ -17,8 +17,7 @@ public class ContactGroupTestAdd extends TestBase {
         if (app.db().contacts().size() == 0) {
             app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Ivan").withLastName("Ivanov").
-                    withAddress("Pushkin st, 54").withEmail("ivan.ivanov@mail.ru").
-                    withMobilePhone("+78521457474"));
+                    withAddress("Pushkin st, 54").withEmail("ivan.ivanov@mail.ru").withMobilePhone("+78521457474"));
         }
     }
 
