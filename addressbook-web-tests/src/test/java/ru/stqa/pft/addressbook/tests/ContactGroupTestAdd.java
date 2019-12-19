@@ -36,7 +36,7 @@ public class ContactGroupTestAdd extends TestBase {
         ContactData modifiedContact = null;
         GroupData groupForAdding = null;
         Contacts before = null;
-        int maxId = 0;
+        int idOfNewGroup = 0;
 
         for (GroupData group : groups) {
             Contacts contactsInGroups = app.db().getContactsInGroup(group.getId());
@@ -51,19 +51,18 @@ public class ContactGroupTestAdd extends TestBase {
         }
 
         if (groupForAdding == null) {
-            groupForAdding = new GroupData().withName("new group NULL");
+            groupForAdding = new GroupData().withName("new group for test");
             app.goTo().groupPage();
             app.group().create(groupForAdding);
             modifiedContact = app.db().contacts().iterator().next();
-            maxId = app.group().getMaxId();
-            before = app.db().getContactsInGroup(maxId);
+            idOfNewGroup = app.group().getMaxId();
+            groupForAdding.withId(idOfNewGroup);
+            before = app.db().getContactsInGroup(idOfNewGroup);
         }
 
         app.goTo().homePage();
         app.contact().addContactToGroup(modifiedContact, groupForAdding);
-
-        Contacts after = app.db().getContactsInGroup(maxId != 0 ? maxId : groupForAdding.getId());
-
+        Contacts after = app.db().getContactsInGroup(idOfNewGroup != 0 ? idOfNewGroup : groupForAdding.getId());
         Assert.assertThat(after, equalTo(before.withAdded(modifiedContact)));
     }
 }

@@ -167,14 +167,16 @@ public class ContactHelper extends HelperBase {
                 withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
     }
 
-    public void addUserToGroup(String nameOfTheGroup) {
-        new Select(driver.findElement(By.name("to_group"))).selectByVisibleText(nameOfTheGroup);
+    public void addUserToGroup(int id) {
+        driver.findElement(By.name("to_group")).click();
+        driver.findElement(By.xpath("//*[@name='to_group']/*[@value='" + id + "']")).click();
         driver.findElement(By.name("add")).click();
+        contactCache = null;
     }
 
-    public void addContactToGroup(ContactData modifiedContact, GroupData groupForAdding) {
+    public void addContactToGroup(ContactData modifiedContact, GroupData group) {
         selectContactById(modifiedContact.getId());
-        addUserToGroup(groupForAdding.getName());
+        addUserToGroup(group.getId());
         contactCache = null;
     }
 

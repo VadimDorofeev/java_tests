@@ -114,7 +114,7 @@ public class GroupHelper extends HelperBase {
     }
 
     public int getMaxId() {
-        groupCache = new Groups();
+        //groupCache = new Groups();
         List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
         int maxId = 0;
         for (WebElement element : elements) {
