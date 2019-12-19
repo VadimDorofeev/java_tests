@@ -181,7 +181,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void deleteFromGroup(ContactData modifiedContact, GroupData groupForAdding) {
-        enterGroup(groupForAdding.getName());
+        enterGroup(groupForAdding.getId());
         selectContactById(modifiedContact.getId());
         deleteContact();
     }
@@ -190,8 +190,10 @@ public class ContactHelper extends HelperBase {
         driver.findElement(By.name("remove")).click();
     }
 
-    private void enterGroup(String name) {
-        new Select(driver.findElement(By.name("group"))).selectByVisibleText(name);
+    private void enterGroup(int id) {
+        driver.findElement(By.name("to_group")).click();
+        driver.findElement(By.xpath("//*[@name='to_group']/*[@value='" + id + "']")).click();
+        driver.findElement(By.name("remove")).click();
     }
 
 }
