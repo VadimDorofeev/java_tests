@@ -13,15 +13,13 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class ContactGroupTestAdd extends TestBase {
 
     @BeforeTest
-    public void checkContacts() {
+    public void checkContactsAndGroups() {
         if (app.db().contacts().size() == 0) {
             app.goTo().homePage();
             app.contact().create(new ContactData().withFirstName("Ivan").withLastName("Ivanov").
                     withAddress("Pushkin st, 54").withEmail("ivan.ivanov@mail.ru").withMobilePhone("+78521457474"));
         }
-    }
 
-    public void checkGroups() {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test2"));

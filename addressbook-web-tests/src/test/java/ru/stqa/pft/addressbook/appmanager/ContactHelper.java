@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -180,9 +178,8 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
     }
 
-    public void deleteFromGroup(ContactData modifiedContact, GroupData groupForAdding) {
-        enterGroup(groupForAdding.getId());
-        selectContactById(modifiedContact.getId());
+    public void deleteContactFromGroup(ContactData contact) {
+        selectContactById(contact.getId());
         deleteContact();
     }
 
@@ -190,10 +187,8 @@ public class ContactHelper extends HelperBase {
         driver.findElement(By.name("remove")).click();
     }
 
-    private void enterGroup(int id) {
-        driver.findElement(By.name("to_group")).click();
-        driver.findElement(By.xpath("//*[@name='to_group']/*[@value='" + id + "']")).click();
-        driver.findElement(By.name("remove")).click();
+    public void selectGroup(int id) {
+        driver.findElement(By.name("group")).click();
+        driver.findElement(By.xpath("//*[@name='group']/*[@value='" + id + "']")).click();
     }
-
 }
