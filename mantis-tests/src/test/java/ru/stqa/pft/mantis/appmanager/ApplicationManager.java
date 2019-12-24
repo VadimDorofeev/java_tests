@@ -48,4 +48,11 @@ public class ApplicationManager {
             fail(verificationErrorString);
         }
     }
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
 }
