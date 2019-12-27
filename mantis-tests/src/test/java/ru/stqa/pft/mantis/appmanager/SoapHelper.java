@@ -1,8 +1,10 @@
 package ru.stqa.pft.mantis.appmanager;
 
+import biz.futureware.mantis.rpc.soap.client.IssueData;
 import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
 import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
 import biz.futureware.mantis.rpc.soap.client.ProjectData;
+import ru.stqa.pft.mantis.model.Issue;
 import ru.stqa.pft.mantis.model.Project;
 
 import javax.xml.rpc.ServiceException;
@@ -22,11 +24,22 @@ public class SoapHelper {
     }
 
     public Set<Project> getProjects() throws MalformedURLException, ServiceException, RemoteException {
-        MantisConnectPortType mc = new MantisConnectLocator()
-                .getMantisConnectPort(new URL("http://localhost/mantisbt-1.2.19/api/soap/mantisconnect.php"));
+        MantisConnectPortType mc = getMantisConnect();
         ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root");
         return Arrays.asList(projects).stream()
                 .map((p) -> new Project().withId(p.getId().intValue()).withName(p.getName()))
                 .collect(Collectors.toSet());
+    }
+
+    private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+        return new MantisConnectLocator()
+                    .getMantisConnectPort(new URL("http://localhost/mantisbt-1.2.19/api/soap/mantisconnect.php"));
+    }
+
+    public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
+        MantisConnectPortType mc = getMantisConnect();
+        IssueData issueData = new IssueData();
+        
+        mc.mc_issue_add("administrator","root", issueData);
     }
 }
