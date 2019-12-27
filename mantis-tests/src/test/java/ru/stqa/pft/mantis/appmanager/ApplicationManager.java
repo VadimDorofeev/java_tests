@@ -66,7 +66,7 @@ public class ApplicationManager {
             } else if (browser.equals(BrowserType.IE)) {
                 driver = new InternetExplorerDriver();
             }
-            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
             driver.get(properties.getProperty("web.baseUrl"));
         }
         return driver;

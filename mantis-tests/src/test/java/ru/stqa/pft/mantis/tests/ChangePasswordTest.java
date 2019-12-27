@@ -15,16 +15,18 @@ import static org.testng.Assert.assertTrue;
 
 public class ChangePasswordTest extends TestBase {
 
-    //@BeforeMethod
+    @BeforeMethod
     public void startMailServer() {
         app.mail().start();
     }
 
     @Test
     public void changePasswordTest() throws IOException, MessagingException {
-        User user = app.change().choseUser(1);
+        User user = app.change().choseUser(2);
+        String email = user.getEmail();
+        String username = user.getUsername();
         app.change().resetPassword();
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 60000);
         String confirmationLink = findConfirmationLink(mailMessages, user.getEmail());
         String newPassword = "root1";
         app.change().changePassword(confirmationLink, newPassword);

@@ -29,7 +29,7 @@ public class MailHelper {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                return null;
+                //return null;
             }
         }
         throw new Error("No mail:(");

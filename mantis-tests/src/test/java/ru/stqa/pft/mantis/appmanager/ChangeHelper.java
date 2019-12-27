@@ -18,7 +18,7 @@ public class ChangeHelper extends HelperBase {
         click(By.cssSelector("input[value='Login']"));
         driver.findElement(By.partialLinkText("Manage")).click();
         driver.findElement(By.partialLinkText("Manage Users")).click();
-        driver.findElement(By.xpath("//a[contains(@href='manage_user_edit_page.user_id=" + id + "')]/@href"));
+        driver.findElement(By.xpath("//a[@href='manage_user_edit_page.php?user_id=" + id + "']")).click();
         String username = driver.findElement(By.name("username")).getAttribute("value");
         String email = driver.findElement(By.name("email")).getAttribute("value");
         User user = new User(username, email);
@@ -27,6 +27,7 @@ public class ChangeHelper extends HelperBase {
 
     public void resetPassword() {
         driver.findElement(By.xpath("//input[@value='Reset Password']")).click();
+
     }
 
     public void changePassword(String link, String password) {
