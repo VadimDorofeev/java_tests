@@ -24,7 +24,7 @@ public class ChangePasswordTest extends TestBase {
     public void changePasswordTest() throws IOException, MessagingException {
         User user = app.change().choseUser(2);
         app.change().resetPassword();
-        List<MailMessage> mailMessages = app.mail().waitForMail(1, 60000);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
         String confirmationLink = findConfirmationLink(mailMessages, user.getEmail());
         String newPassword = "root1";
         app.change().changePassword(confirmationLink, newPassword);
