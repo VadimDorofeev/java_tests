@@ -23,7 +23,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$/Sandbox" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/sandbox" />
+            <option value="$PROJECT_DIR$/Sandbox" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />
@@ -75,6 +75,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/soap-sample" />
+          </set>
+        </option>
+        <option name="useAutoImport" value="true" />
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../new_rep/java_tests/rest-sample" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../new_rep/java_tests/rest-sample" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />
