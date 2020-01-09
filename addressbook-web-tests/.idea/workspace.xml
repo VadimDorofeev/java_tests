@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba7d0aab-4167-4d0f-a0f4-016d15ba3204" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/ApplicationManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/ContactHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/DbHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/GroupHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/HelperBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/NavigationHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/appmanager/SessionHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/generators/ContactDataGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/generators/GroupDataGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/model/ContactData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/model/Contacts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/model/GroupData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/model/Groups.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactCreationTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactCreationTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactDeletionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactGroupTestAdd.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactGroupTestDelete.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactModificationTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/ContactPhoneTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/DbConnectionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupCreationTest$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupCreationTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupDeletionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/GroupModificationTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/HbConnectionTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/ru/stqa/pft/addressbook/tests/TestBase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/stqa/pft/addressbook/tests/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/stqa/pft/addressbook/tests/TestBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/testng-groups.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testng-groups.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,5 +60,11 @@
       <updated>1578562211507</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2728" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1578566385990">
+      <screen x="1920" y="1" width="1920" height="1040" />
+    </state>
+    <state x="2728" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/1920.1.1920.1040/0.0.1920.1040@1920.1.1920.1040" timestamp="1578566385990" />
   </component>
 </project>
